@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>세상은 평화 원하지만 — 구분동작 연습</title>
+<style>
+  :root{--bg:#0a0c0f;--panel:#111418;--panel2:#181c22;--line:#242a32;--txt:#e8edf4;
+        --sub:#8e9aab;--dim:#5d6878;--acc:#ffd038}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--txt);line-height:1.6;
+       font-family:'NanumSquareRound','NanumSquare',-apple-system,'Malgun Gothic',sans-serif;
+       -webkit-tap-highlight-color:transparent;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px 120px}
+
+  header{padding:30px 0 14px}
+  .eyebrow{color:var(--acc);font-size:12px;letter-spacing:.14em;font-weight:700}
+  h1{font-size:29px;font-weight:800;letter-spacing:-.02em;margin:8px 0 4px}
+  .sub{color:var(--sub);font-size:13.5px}
+
+  h2{font-size:16px;font-weight:800;margin:26px 0 3px;display:flex;align-items:center;gap:8px}
+  h2 .n{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;
+        border-radius:6px;background:var(--acc);color:#0a0c0f;font-size:12px;font-weight:800}
+  .hint{color:var(--dim);font-size:12.5px;margin-bottom:12px}
+
+  .chplayer{background:var(--panel);border:1px solid var(--line);border-radius:12px;
+            overflow:hidden}
+  .chplayer .chead{padding:11px 14px;display:flex;justify-content:space-between;
+                   align-items:center;gap:10px}
+  .name{font-weight:800;font-size:14px}
+  .meta{font-size:11.5px;color:var(--dim);margin-top:1px}
+  .mir{background:transparent;border:1px solid var(--line);color:var(--dim);
+       font-family:inherit;font-size:11.5px;font-weight:700;padding:5px 11px;border-radius:7px;
+       cursor:pointer;white-space:nowrap}
+  .mir:hover{color:var(--txt);border-color:#3a434f}
+  .mir.on{background:rgba(255,208,56,.14);border-color:var(--acc);color:var(--acc)}
+  video{width:100%;display:block;background:#000}
+
+  /* 영상 아래 파트 선택 — 어떤 폭에서도 한 줄 */
+  .parts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:12px}
+  .pbtn{min-width:0;background:var(--panel2);border:1px solid var(--line);color:var(--sub);
+        padding:12px 14px;border-radius:11px;font-size:15px;font-weight:800;
+        cursor:pointer;font-family:inherit;text-align:left;transition:.15s;
+        white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .pbtn small{display:block;font-size:11.5px;font-weight:600;color:var(--dim);margin-top:2px;
+              white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .pbtn:hover{border-color:#3a434f;color:var(--txt)}
+  .pbtn.on{background:rgba(255,208,56,.09);border-color:var(--acc);color:var(--acc)}
+  .pbtn.on small{color:#a08a3d}
+
+  .opts{display:flex;gap:7px;align-items:center;margin:10px 0 4px;flex-wrap:wrap}
+  .olab{font-size:11.5px;font-weight:700;color:var(--dim);margin-right:2px}
+  .chip{background:var(--panel2);border:1px solid var(--line);color:var(--sub);
+        padding:6px 14px;border-radius:8px;font-size:12.5px;font-weight:700;
+        cursor:pointer;font-family:inherit}
+  .chip.on{background:var(--acc);border-color:var(--acc);color:#0a0c0f}
+
+  .chbtns{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+  .chbtn{background:var(--panel);border:1px solid var(--line);border-radius:10px;
+         padding:10px 11px 11px;cursor:pointer;font-family:inherit;text-align:left;
+         color:var(--sub);display:flex;flex-direction:column;gap:2px;transition:.13s}
+  .chbtn:hover{border-color:#3a434f;background:#161a20}
+  .chbtn.on{background:rgba(255,208,56,.11);border-color:var(--acc)}
+  .chbtn .cn{font-size:18px;font-weight:800;color:var(--dim);line-height:1;
+             font-variant-numeric:tabular-nums}
+  .chbtn.on .cn{color:var(--acc)}
+  .chbtn .ct{font-size:12.5px;font-weight:700;color:var(--sub);line-height:1.35}
+  .chbtn.on .ct{color:var(--txt)}
+  .chbtn .cs{font-size:10.5px;color:#4d5765}
+
+  footer{margin-top:30px;border-top:1px solid var(--line);padding-top:16px;
+         color:var(--dim);font-size:12px}
+
+  @media(max-width:820px){
+    .chbtns{grid-template-columns:repeat(2,1fr)}
+    h1{font-size:23px}
+    .wrap{padding-left:14px;padding-right:14px}
+  }
+  @media(max-width:420px){
+    .pbtn{padding:10px 11px;font-size:14px}
+    .pbtn small{font-size:10.5px}
+    .parts{gap:7px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="eyebrow">율동 연습 · 구분동작</div>
+  <h1>세상은 평화 원하지만</h1>
+  <div class="sub">파트 1 · 파트 2 — 각 16개 구분동작</div>
+</header>
+
+<h2><span class="n">1</span>구분동작 재생</h2>
+<p class="hint">영상 아래에서 파트를 고르고, 맨 아래에서 동작을 누르면 그 지점부터 재생됩니다.</p>
+
+<div class="chplayer" id="chplayer">
+  <div class="chead">
+    <div><div class="name" id="chName">01  박수 · 팔 위로</div>
+         <div class="meta" id="chMeta">파트 1 · 인트로 · 14.8s</div></div>
+    <button class="mir" id="chMir">거울</button>
+  </div>
+  <video id="chvid" controls playsinline preload="metadata"></video>
+</div>
+
+<div class="parts">
+  <button class="pbtn on" data-part="1">파트 1<small>2:21 · 16개 동작</small></button>
+  <button class="pbtn" data-part="2">파트 2<small>2:07 · 16개 동작</small></button>
+</div>
+
+<div class="opts">
+  <span class="olab">화면</span>
+  <button class="chip on" data-form="가로">가로</button>
+  <button class="chip" data-form="세로">세로</button>
+</div>
+
+<h2><span class="n">2</span>구분동작 선택</h2>
+<div class="chbtns" id="chbtns"></div>
+
+<footer>
+  세상은 평화 원하지만 · 율동 연습 — 정속 · 16개 구분동작
+</footer>
+</div>
+
+<script>
+const BASE = 'videos/';
+const FILES = {
+  '1': {가로:'part1_h.mp4', 세로:'part1_v.mp4'},
+  '2': {가로:'part2_h.mp4', 세로:'part2_v.mp4'}
+};
+const DUR = {'1':'2:21', '2':'2:07'};
+const END = {'1':140.917, '2':127.100};
+const START = {
+  '1':[0.000,14.833,22.250,29.667,37.083,44.500,51.917,59.333,66.750,81.583,
+       89.000,96.417,103.833,111.250,118.667,126.083],
+  '2':[0.000,7.467,14.967,22.433,29.933,37.400,44.867,52.367,59.833,67.333,
+       74.800,82.267,89.733,97.200,104.667,112.167]
+};
+const CH = {
+  '1': [
+    ['박수 · 팔 위로','인트로','14.8'],['팔 내리고 스텝','1절','7.4'],
+    ['제자리 스텝','1절','7.4'],['두 손 가슴으로','프리코러스','7.4'],
+    ['가슴 앞 원 그리기','후렴','7.4'],['손 앞으로 내밀기','후렴','7.4'],
+    ['팔 좌우로 벌리기','후렴','7.4'],['팔 흔들며 스텝','후렴','7.4'],
+    ['팔 벌려 좌우 이동','간주','14.8'],['손 모아 앞으로','간주','7.4'],
+    ['고개 기울여 손 모으기','2절','7.4'],['두 손 앞으로 뻗기','2절','7.4'],
+    ['손 가슴으로 모으기','프리코러스','7.4'],['무릎 들기 · 발차기','후렴','7.4'],
+    ['무릎 들고 손 흔들기','후렴','7.4'],['어깨동무 · 마무리','엔딩','14.8']
+  ],
+  '2': [
+    ['입장 · 손 흔들기','인트로','7.5'],['제자리 스텝 · 팔 앞뒤','1절','7.5'],
+    ['한쪽 발 들기','1절','7.5'],['양팔 위로 · 가리키기','1절','7.5'],
+    ['옆으로 이동 · 팔 펼치기','후렴','7.5'],['합장 · 무릎 들기','후렴','7.5'],
+    ['어깨동무 · 좌우 흔들','후렴','7.5'],['빠른 스텝 · 팔 펌프','간주','7.5'],
+    ['한팔 위로 · 옆구리','간주','7.5'],['던지기 동작','2절','7.5'],
+    ['양손 볼에 대기','2절','7.5'],['손 흔들며 비 내리기','2절','7.5'],
+    ['큰 원 그리기','2절','7.5'],['양손 엄지 앞으로','2절','7.5'],
+    ['발차기 · 균형','후렴2','7.5'],['무릎 꿇기 · 마무리','엔딩','14.9']
+  ]
+};
+
+let part = '1', form = '가로', chMirror = false, cur = 1;
+const pad = n => String(n).padStart(2,'0');
+const mmss = s => { s = Math.max(0, Math.floor(s)); return Math.floor(s/60)+':'+pad(s%60); };
+const src = (p,f) => BASE + FILES[p][f];
+
+function renderChapters(on){
+  document.getElementById('chbtns').innerHTML = CH[part].map((c,i)=>`
+    <button class="chbtn ${i+1===on?'on':''}" data-no="${i+1}" type="button">
+      <span class="cn">${pad(i+1)}</span>
+      <span class="ct">${c[0]}</span>
+      <span class="cs">${c[1]} · ${c[2]}s</span>
+    </button>`).join('');
+}
+
+function playCh(no, scroll){
+  const c = CH[part][no-1];
+  if (!c) return;
+  cur = no;
+  const v = document.getElementById('chvid');
+  const want = src(part, form);
+  if (!v.src.endsWith(want)) v.src = want;
+  v.style.transform = chMirror ? 'scaleX(-1)' : '';
+  const t0 = START[part][no-1];
+  const go = ()=>{ try { v.currentTime = t0; } catch(_){} v.play().catch(()=>{}); };
+  if (v.readyState >= 1) go();
+  else v.addEventListener('loadedmetadata', go, {once:true});
+  const t1 = START[part][no] !== undefined ? START[part][no] : END[part];
+  document.getElementById('chName').textContent = pad(no) + '  ' + c[0];
+  document.getElementById('chMeta').textContent =
+    '파트 ' + part + ' · ' + c[1] + ' · ' + c[2] + 's · ' + mmss(t0) + '~' + mmss(t1) +
+    (chMirror ? ' · 거울' : '');
+  if (scroll !== false) {
+    document.getElementById('chplayer').scrollIntoView({behavior:'smooth', block:'center'});
+  }
+  renderChapters(no);
+}
+
+document.getElementById('chbtns').addEventListener('click', e=>{
+  const b = e.target.closest('.chbtn');
+  if (b) playCh(Number(b.dataset.no));
+});
+document.getElementById('chMir').onclick = function(){
+  chMirror = !chMirror;
+  this.classList.toggle('on', chMirror);
+  playCh(cur);
+};
+document.querySelectorAll('.opts .chip').forEach(c=>{
+  c.onclick = ()=>{
+    document.querySelectorAll('.opts .chip').forEach(x=>x.classList.remove('on'));
+    c.classList.add('on'); form = c.dataset.form;
+    const v = document.getElementById('chvid');
+    v.src = src(part, form);
+    playCh(cur);
+  };
+});
+document.querySelectorAll('.pbtn').forEach(b=>{
+  b.onclick = ()=>{
+    document.querySelectorAll('.pbtn').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on'); part = b.dataset.part; cur = 1;
+    renderChapters(0);
+    const v = document.getElementById('chvid');
+    v.src = src(part, form);
+    playCh(1);
+  };
+});
+renderChapters(0);
+playCh(1, false);
+</script>
+</body>
+</html>
